@@ -14,7 +14,7 @@ $cartCount = Cart::count();
 <title><?= e($pageTitle) ?> | <?= e(get_setting('business_name', SITE_NAME)) ?></title>
 <meta name="description" content="<?= e($pageDescription) ?>">
 <meta name="theme-color" content="#0e2f22">
-<link rel="icon" href="<?= e(base_url('assets/images/logo.jpg')) ?>">
+<?php require __DIR__ . '/favicon.php'; ?>
 <link rel="stylesheet" href="<?= e(base_url('assets/css/style.css')) ?>">
 </head>
 <body>
@@ -23,7 +23,7 @@ $cartCount = Cart::count();
 <header class="site-header" id="site-header">
   <div class="container header-inner">
     <a class="brand" href="<?= e(base_url('index.php')) ?>">
-      <img src="<?= e(base_url('assets/images/logo.jpg')) ?>" alt="<?= e(get_setting('business_name', SITE_NAME)) ?>" class="brand-logo">
+      <img src="<?= e(base_url('assets/images/logo-round.png')) ?>" alt="<?= e(get_setting('business_name', SITE_NAME)) ?>" class="brand-logo">
       <span class="brand-text">
         <strong><?= e(get_setting('business_name', SITE_NAME)) ?></strong>
         <small><?= e(get_setting('business_tagline', '')) ?></small>

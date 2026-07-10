@@ -33,7 +33,7 @@ require_once __DIR__ . '/includes/header.php';
       </div>
     </div>
     <div class="hero-photo">
-      <img src="<?= e(base_url('assets/images/logo.jpg')) ?>" alt="Kalyani Catering">
+      <img src="<?= e(base_url('assets/images/logo-round.png')) ?>" alt="Kalyani Catering">
     </div>
   </div>
 </section>
@@ -81,11 +81,7 @@ require_once __DIR__ . '/includes/header.php';
       <?php foreach ($featured as $item): ?>
         <div class="menu-card">
           <div class="menu-card-media">
-            <?php if ($item['image_path']): ?>
-              <img src="<?= e(base_url('uploads/menu/' . $item['image_path'])) ?>" alt="<?= e($item['name']) ?>" loading="lazy">
-            <?php else: ?>
-              <span class="emoji-fallback"><?= $item['diet_type'] === 'veg' ? '🥗' : '🍛' ?></span>
-            <?php endif; ?>
+            <img src="<?= e(dish_image_url($item['image_path'], $item['course_type'], $item['diet_type'])) ?>" alt="<?= e($item['name']) ?>" loading="lazy">
             <?php if ($item['is_new']): ?><span class="badge badge-new">New</span><?php endif; ?>
           </div>
           <div class="menu-card-body">

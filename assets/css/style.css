@@ -187,7 +187,7 @@ label { font-weight: 600; font-size: 14px; display: block; margin-bottom: 6px; c
 .menu-card-body p.desc { font-size: 13.5px; color: var(--ink-600); flex: 1; }
 .menu-card-footer { padding: 0 16px 16px; }
 .tier-select { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
-.tier-btn { flex: 1; min-width: 72px; padding: 8px 6px; border: 1.5px solid var(--border); border-radius: 8px; background: #fff; font-size: 12px; text-align: center; }
+.tier-btn { display: block; flex: 1; min-width: 72px; padding: 8px 6px; border: 1.5px solid var(--border); border-radius: 8px; background: #fff; font-size: 12px; text-align: center; }
 .tier-btn strong { display: block; font-size: 13px; color: var(--green-900); }
 .tier-btn.active { border-color: var(--green-900); background: var(--cream-200); }
 .add-row { display: flex; align-items: center; gap: 10px; }
@@ -219,7 +219,7 @@ legend { padding: 0 8px; font-family: var(--font-heading); color: var(--green-90
 .radio-card input { width: auto; }
 .radio-card.active { border-color: var(--green-900); background: var(--cream-200); }
 .pay-methods { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
-.pay-method-btn { flex: 1; min-width: 160px; padding: 16px; border: 1.5px solid var(--border); border-radius: 10px; background: #fff; font-weight: 700; text-align: center; }
+.pay-method-btn { display: block; flex: 1; min-width: 160px; padding: 16px; border: 1.5px solid var(--border); border-radius: 10px; background: #fff; font-weight: 700; text-align: center; }
 .pay-method-btn.active { border-color: var(--gold-500); box-shadow: 0 0 0 3px rgba(201,162,75,.18); }
 
 /* ---------------- Contact / general content ---------------- */

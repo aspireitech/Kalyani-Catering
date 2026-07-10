@@ -188,7 +188,7 @@ require_once __DIR__ . '/includes/admin_header.php';
 
   <fieldset>
     <legend>Photo</legend>
-    <img id="image-preview" class="thumb-preview" style="width:120px;height:120px;margin-bottom:10px;" src="<?= $item['image_path'] ?? null ? e(base_url('uploads/menu/' . $item['image_path'])) : e(base_url('assets/images/logo.jpg')) ?>" alt="">
+    <img id="image-preview" class="thumb-preview" style="width:120px;height:120px;margin-bottom:10px;" src="<?= e(dish_image_url($item['image_path'] ?? null, $item['course_type'] ?? 'starter', $item['diet_type'] ?? 'veg')) ?>" alt="">
     <input type="file" id="image-input" name="image" accept="image/png,image/jpeg,image/webp">
   </fieldset>
 

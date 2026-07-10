@@ -66,11 +66,7 @@ require_once __DIR__ . '/../includes/header.php';
       <?php foreach ($items as $item): $tiers = $tiersByItem[$item['id']] ?? []; ?>
         <div class="menu-card" data-id="<?= (int)$item['id'] ?>" data-name="<?= e($item['name']) ?>" data-diet="<?= e($item['diet_type']) ?>" data-course="<?= e($item['course_type']) ?>" data-cuisine="<?= e($item['cuisine']) ?>" data-slug="<?= e($item['slug']) ?>">
           <div class="menu-card-media">
-            <?php if ($item['image_path']): ?>
-              <img src="<?= e(base_url('uploads/menu/' . $item['image_path'])) ?>" alt="<?= e($item['name']) ?>" loading="lazy">
-            <?php else: ?>
-              <span class="emoji-fallback"><?= $item['diet_type'] === 'veg' ? '🥗' : '🍛' ?></span>
-            <?php endif; ?>
+            <img src="<?= e(dish_image_url($item['image_path'], $item['course_type'], $item['diet_type'])) ?>" alt="<?= e($item['name']) ?>" loading="lazy">
             <span class="badge <?= $item['diet_type'] === 'veg' ? 'badge-veg' : 'badge-nonveg' ?>"><?= $item['diet_type'] === 'veg' ? 'Veg' : 'Non-Veg' ?></span>
             <?php if ($item['is_new']): ?><span class="badge badge-new">New</span><?php endif; ?>
           </div>

@@ -16,7 +16,7 @@ $navItems = [
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title><?= e($pageTitle ?? 'Admin') ?> | <?= e(get_setting('business_name', SITE_NAME)) ?> Admin</title>
-<link rel="icon" href="<?= e(base_url('assets/images/logo.jpg')) ?>">
+<?php require __DIR__ . '/../../includes/favicon.php'; ?>
 <link rel="stylesheet" href="<?= e(base_url('assets/css/style.css')) ?>">
 </head>
 <body class="admin-body">

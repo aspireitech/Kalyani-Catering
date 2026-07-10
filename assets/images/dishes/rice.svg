@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f4f1ea"/>
+      <stop offset="1" stop-color="#eee5cf"/>
+    </linearGradient>
+    <linearGradient id="rice" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3dfa0"/>
+      <stop offset="1" stop-color="#e0bd6b"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#bg)"/>
+  <ellipse cx="200" cy="215" rx="135" ry="24" fill="#0e2f22" opacity="0.08"/>
+  <path d="M75 155 a125 72 0 0 0 250 0 Z" fill="#ffffff" stroke="#c9a24b" stroke-width="3"/>
+  <ellipse cx="200" cy="152" rx="112" ry="36" fill="url(#rice)"/>
+  <g fill="#8f331d" opacity="0.85">
+    <ellipse cx="165" cy="140" rx="6" ry="9" transform="rotate(20 165 140)"/>
+    <ellipse cx="220" cy="132" rx="6" ry="9" transform="rotate(-15 220 132)"/>
+    <ellipse cx="245" cy="150" rx="6" ry="9" transform="rotate(30 245 150)"/>
+    <ellipse cx="190" cy="160" rx="6" ry="9" transform="rotate(-25 190 160)"/>
+  </g>
+  <g fill="#2f7a4f" opacity="0.85">
+    <ellipse cx="200" cy="125" rx="5" ry="8" transform="rotate(10 200 125)"/>
+    <ellipse cx="150" cy="155" rx="5" ry="8" transform="rotate(-18 150 155)"/>
+    <ellipse cx="260" cy="140" rx="5" ry="8" transform="rotate(22 260 140)"/>
+  </g>
+  <text x="200" y="70" text-anchor="middle" font-family="Georgia, serif" font-size="22" fill="#0e2f22" font-weight="bold">Rice &amp; Biryani</text>
+</svg>

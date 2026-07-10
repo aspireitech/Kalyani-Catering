@@ -21,14 +21,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Admin Login | <?= e(get_setting('business_name', SITE_NAME)) ?></title>
-<link rel="icon" href="<?= e(base_url('assets/images/logo.jpg')) ?>">
+<?php require __DIR__ . '/../includes/favicon.php'; ?>
 <link rel="stylesheet" href="<?= e(base_url('assets/css/style.css')) ?>">
 </head>
 <body>
 <div class="admin-login-wrap">
   <div class="admin-login-card">
     <div style="text-align:center;margin-bottom:20px;">
-      <img src="<?= e(base_url('assets/images/logo.jpg')) ?>" alt="" style="width:64px;height:64px;border-radius:50%;margin:0 auto 10px;">
+      <img src="<?= e(base_url('assets/images/logo-round.png')) ?>" alt="" style="width:64px;height:64px;margin:0 auto 10px;">
       <h2 style="margin:0;">Admin Login</h2>
     </div>
     <?php if ($error): ?><div class="alert alert-error"><?= e($error) ?></div><?php endif; ?>

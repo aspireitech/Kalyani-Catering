@@ -6,7 +6,7 @@
 <footer class="site-footer">
   <div class="container footer-grid">
     <div class="footer-col">
-      <img src="<?= e(base_url('assets/images/logo.jpg')) ?>" alt="<?= e(get_setting('business_name', SITE_NAME)) ?>" class="footer-logo">
+      <img src="<?= e(base_url('assets/images/logo-round.png')) ?>" alt="<?= e(get_setting('business_name', SITE_NAME)) ?>" class="footer-logo">
       <p><?= e(get_setting('business_tagline', '')) ?></p>
       <div class="social-links">
         <?php if ($fb = get_setting('facebook_url')): ?><a href="<?= e($fb) ?>" target="_blank" rel="noopener">Facebook</a><?php endif; ?>

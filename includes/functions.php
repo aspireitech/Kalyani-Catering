@@ -138,6 +138,29 @@ function course_label(string $course): string
     return COURSE_LABELS[$course] ?? ucfirst($course);
 }
 
+/** Path (relative to /assets/images/dishes/) to a branded placeholder illustration for a dish. */
+function dish_placeholder_path(string $courseType, string $dietType): string
+{
+    $map = [
+        'starter' => $dietType === 'non-veg' ? 'starter-nonveg.svg' : 'starter-veg.svg',
+        'main'    => $dietType === 'non-veg' ? 'main-nonveg.svg' : 'main-veg.svg',
+        'rice'    => 'rice.svg',
+        'dal'     => 'dal.svg',
+        'dessert' => 'dessert.svg',
+        'drink'   => 'drink.svg',
+        'side'    => 'side.svg',
+    ];
+    return $map[$courseType] ?? ($dietType === 'non-veg' ? 'main-nonveg.svg' : 'main-veg.svg');
+}
+
+function dish_image_url(?string $imagePath, string $courseType, string $dietType): string
+{
+    if ($imagePath) {
+        return base_url('uploads/menu/' . $imagePath);
+    }
+    return base_url('assets/images/dishes/' . dish_placeholder_path($courseType, $dietType));
+}
+
 /** Best-effort sync of a subscriber to Mailchimp. No-op if not configured. */
 function mailchimp_subscribe(string $email, string $name = ''): void
 {

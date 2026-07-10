@@ -53,7 +53,7 @@ require_once __DIR__ . '/includes/admin_header.php';
       <tbody>
         <?php foreach ($items as $item): $tiers = $tiersByItem[$item['id']] ?? []; ?>
         <tr>
-          <td><img class="thumb-preview" src="<?= $item['image_path'] ? e(base_url('uploads/menu/' . $item['image_path'])) : e(base_url('assets/images/logo.jpg')) ?>" alt=""></td>
+          <td><img class="thumb-preview" src="<?= e(dish_image_url($item['image_path'], $item['course_type'], $item['diet_type'])) ?>" alt=""></td>
           <td><?= e($item['name']) ?></td>
           <td><?= e($item['cuisine']) ?></td>
           <td><?= $item['diet_type'] === 'veg' ? '🌱 Veg' : '🍗 Non-Veg' ?></td>
