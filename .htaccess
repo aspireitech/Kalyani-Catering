@@ -1,0 +1,38 @@
+# Kalyani Catering — root .htaccess
+# Works on Apache (standard for cPanel/hPanel shared hosting).
+
+# Never allow direct access to sensitive files
+<FilesMatch "^(config\.php|config\.sample\.php|db\.sql|\.env)$">
+  Require all denied
+</FilesMatch>
+
+# Disable directory listing
+Options -Indexes
+
+# Protect includes/ and admin/includes/ even if their own .htaccess is missing
+RewriteEngine On
+RewriteRule ^includes/ - [F,L]
+RewriteRule ^admin/includes/ - [F,L]
+
+# Uncomment to force HTTPS once your SSL certificate is active
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Basic security headers
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Cache static assets for performance
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType text/css "access plus 1 week"
+  ExpiresByType application/javascript "access plus 1 week"
+</IfModule>
+
+php_flag display_errors off
