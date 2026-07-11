@@ -62,11 +62,18 @@ require_once __DIR__ . '/../includes/header.php';
       </div>
 
       <div id="pay-root" data-token="<?= e($token) ?>">
-        <div class="pay-methods" style="margin-bottom:18px;">
-          <button type="button" id="pay-stripe-btn" class="pay-method-btn active">💳 Pay with Card / Apple Pay<br><span class="muted">Powered by Stripe</span></button>
+        <button type="button" id="pay-stripe-btn" class="btn btn-primary btn-block pay-default-btn">
+          <span id="pay-stripe-label">💳 Pay with Credit / Debit Card</span>
+          <span class="pay-default-sub">Apple Pay also available &middot; Powered by Stripe</span>
+        </button>
+
+        <div id="paypal-section" hidden>
+          <div class="pay-divider"><span>or pay with</span></div>
+          <div class="pay-pill-row">
+            <div id="paypal-button-container" class="pay-pill"></div>
+            <div id="venmo-button-container" class="pay-pill"></div>
+          </div>
         </div>
-        <div id="paypal-button-container"></div>
-        <p class="muted" style="text-align:center;margin-top:10px;">PayPal also lets you pay with Venmo when available on your account.</p>
       </div>
     <?php endif; ?>
   </div>

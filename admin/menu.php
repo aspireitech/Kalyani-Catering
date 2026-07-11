@@ -30,7 +30,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     redirect('menu.php');
 }
 
-$items = $db->query("SELECT * FROM menu_items ORDER BY course_type, sort_order")->fetchAll();
+$items = $db->query(
+    "SELECT * FROM menu_items
+     ORDER BY FIELD(course_type, 'starter', 'main', 'rice', 'dal', 'dessert', 'drink', 'side'), sort_order"
+)->fetchAll();
 $tierStmt = $db->query("SELECT menu_item_id, tier_name, price FROM menu_item_tiers ORDER BY sort_order");
 $tiersByItem = [];
 foreach ($tierStmt->fetchAll() as $t) {

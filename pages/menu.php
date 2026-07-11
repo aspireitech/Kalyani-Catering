@@ -10,7 +10,10 @@ if (!empty($_GET['promo'])) {
 }
 
 $db = Database::get();
-$items = $db->query("SELECT * FROM menu_items WHERE is_active = 1 ORDER BY course_type, sort_order")->fetchAll();
+$items = $db->query(
+    "SELECT * FROM menu_items WHERE is_active = 1
+     ORDER BY FIELD(course_type, 'starter', 'main', 'rice', 'dal', 'dessert', 'drink', 'side'), sort_order"
+)->fetchAll();
 
 $tierStmt = $db->query("SELECT * FROM menu_item_tiers ORDER BY sort_order");
 $tiersByItem = [];

@@ -369,10 +369,11 @@
     var token = payRoot.dataset.token;
 
     var stripeBtn = document.getElementById('pay-stripe-btn');
+    var stripeLabel = document.getElementById('pay-stripe-label');
     if (stripeBtn) {
       stripeBtn.addEventListener('click', function () {
         stripeBtn.disabled = true;
-        stripeBtn.textContent = 'Redirecting to secure checkout...';
+        if (stripeLabel) stripeLabel.textContent = 'Redirecting to secure checkout...';
         fetch(KC.baseUrl + 'api/stripe_create_session.php', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -383,23 +384,23 @@
           } else {
             toast(data.message || 'Could not start Stripe checkout.', true);
             stripeBtn.disabled = false;
-            stripeBtn.textContent = 'Pay with Card / Apple Pay';
+            if (stripeLabel) stripeLabel.textContent = '💳 Pay with Credit / Debit Card';
           }
         });
       });
     }
 
-    var paypalContainer = document.getElementById('paypal-button-container');
-    if (paypalContainer && window.paypal) {
-      window.paypal.Buttons({
-        style: { layout: 'vertical', color: 'gold', label: 'paypal' },
+    // Shared PayPal Orders API flow, reused for both the PayPal-branded and
+    // Venmo-branded buttons (Venmo payments are processed through PayPal).
+    function paypalOrderHandlers() {
+      return {
         createOrder: function () {
           return fetch(KC.baseUrl + 'api/paypal_create_order.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ token: token, csrf_token: KC.csrfToken })
           }).then(function (r) { return r.json(); }).then(function (data) {
-            if (!data.ok) throw new Error(data.message || 'Could not start PayPal checkout.');
+            if (!data.ok) throw new Error(data.message || 'Could not start checkout.');
             return data.paypal_order_id;
           });
         },
@@ -417,9 +418,44 @@
           });
         },
         onError: function () {
-          toast('PayPal checkout failed. Please try again.', true);
+          toast('Checkout failed. Please try again.', true);
         }
-      }).render('#paypal-button-container');
+      };
+    }
+
+    if (window.paypal) {
+      var renderedAny = false;
+
+      var paypalButtons = window.paypal.Buttons(Object.assign({
+        fundingSource: window.paypal.FUNDING.PAYPAL,
+        style: { layout: 'horizontal', color: 'gold', label: 'paypal', height: 45, tagline: false }
+      }, paypalOrderHandlers()));
+      var paypalContainer = document.getElementById('paypal-button-container');
+      if (paypalContainer) {
+        if (paypalButtons.isEligible()) {
+          paypalButtons.render('#paypal-button-container');
+          renderedAny = true;
+        } else {
+          paypalContainer.remove();
+        }
+      }
+
+      var venmoButtons = window.paypal.Buttons(Object.assign({
+        fundingSource: window.paypal.FUNDING.VENMO,
+        style: { height: 45 }
+      }, paypalOrderHandlers()));
+      var venmoContainer = document.getElementById('venmo-button-container');
+      if (venmoContainer) {
+        if (venmoButtons.isEligible()) {
+          venmoButtons.render('#venmo-button-container');
+          renderedAny = true;
+        } else {
+          venmoContainer.remove();
+        }
+      }
+
+      var paypalSection = document.getElementById('paypal-section');
+      if (paypalSection) paypalSection.hidden = !renderedAny;
     }
   }
 
